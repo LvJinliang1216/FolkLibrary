@@ -1,0 +1,180 @@
+﻿@{
+    ViewBag.Title = "用户列表";
+    Layout = "~/Views/Shared/_LayoutFolkLibrary.cshtml";
+}
+<div id="searchPanel" class="easyui-panel" title="数据检索" style="height: 60px;">
+    <form id="searchForm">
+        <table>
+            <tr>
+                <td>
+                    <label>用户名:</label>
+                    <input name="UserName" class="easyui-textbox" style="width: 200px">
+                </td>
+                <td>
+                    <label>账号:</label>
+                    <input name="AccountName" class="easyui-textbox" style="width: 200px">
+                </td>
+                <td>
+                    <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'" onclick="searchData()">查询</a>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+@*结果集*@
+<table id="dataGrid" title="功能列表" class="easyui-datagrid" toolbar="#toolbar" pagination="true" rownumbers="true" fitcolumns="true" nowrap="false" url="/Account/UserInfoList" style="width: 100%;">
+    <thead>
+        <tr>
+            <th data-options="field:'ck',checkbox:true" align="center"></th>
+            <th field="UserName">用户名</th>
+            <th field="AccountName">用户账号</th>
+        </tr>
+    </thead>
+</table>
+
+@*增加更新对话框*@
+<div id="dlgEdit" class="easyui-dialog" title="编辑用户信息" closed="true" style="width:400px;height:200px;padding:10px 10px" buttons="#dlgope-buttons">
+    <form id="fm" method="post" novalidate style="width: 90%; text-align: left;">
+        <table>
+            <tr>
+                <td>
+                    <label>用户名:</label>
+                    <input type="hidden" name="Id" id="UserInfoId" value="0" />
+                    <input name="UserName" class="easyui-textbox" style="width: 200px" data-options="required:true">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>账&nbsp;&nbsp;&nbsp;号:</label>
+                    <input name="AccountName" class="easyui-textbox" style="width: 200px" data-options="required:true">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>密&nbsp;&nbsp;&nbsp;码:</label>
+                    <input name="Password" class="easyui-textbox" type="password" style="width: 200px;" data-options="required:true">
+                    <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-reload'" onclick="resetPassword()">重置密码</a>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<div id="dlgope-buttons">
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-ok" onclick="saveMenuData()" style="width:70px;">保存</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-cancel" onclick="javascript: $('#fm').form('clear'), $('#dlgEdit').dialog('close');" style="width:70px;">放弃</a>
+</div>
+<div id="toolbar">
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-add" plain="true" onclick="AddMenu()">添加</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-edit" plain="true" onclick="EditMenu()">修改</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-no" plain="true" onclick="DeleteMenu()">删除</a>
+</div>
+<div id='Loading' style="position: absolute; z-index: 1000; top: 0px; left: 0px;
+        width: 100%; height: 100%; background: #fff; text-align: center;">
+    <h1 style="top: 48%; position: relative; color:#909ba5;">
+        <font>正在处理中，请稍后<img src="/Images/4.gif" /></font>
+    </h1>
+</div>
+<script type="text/javascript">
+    var pc;
+    $.parser.onComplete = function () {
+        if (pc) clearTimeout(pc);
+        pc = setTimeout(function () {
+            $("#Loading").hide();
+        }, 1000);
+    }
+    $(function () {
+        resizePanel("searchPanel");
+    });
+    function resizePanel(panelId) {
+        var tempHeight = document.body.height;
+        var tempWidth = document.body.width;
+        $(window).resize(function () {
+            $('#' + panelId).panel("resize",
+            {
+                width: tempWidth
+            });
+        });
+    }
+</script>
+<script type="text/javascript">
+    function AddMenu() {
+        $("#fm").form("clear");
+        $("#dlgEdit").dialog("open");
+    }
+
+    function EditMenu() {
+        var row = $('#dataGrid').datagrid('getSelected');
+        if (row) {
+            $("#fm").form("load", row);
+            $("#dlgEdit").dialog("open");
+        } else {
+            $.messager.alert("提示", "请选择将要操作的数据");
+        }
+
+    }
+
+    function DeleteMenu() {
+        var row = $('#dataGrid').datagrid('getSelected');
+        if (row) {
+            var data = {
+                "userInfoId": row.Id
+            };
+            $.post("/Account/DeleteUserInfo", data, function (dataObj) {
+                $.messager.alert("提示", dataObj.Msg);
+                if (dataObj.Flag === "true") {
+                    searchData();
+                }
+            });
+        } else {
+            $.messager.alert("提示", "请选择将要操作的数据");
+        }
+    }
+
+    function saveMenuData() {
+        var validateResult = $("#fm").form("validate");
+        if (!validateResult) {
+            return;
+        }
+        var data = $("#fm").serialize();
+        $.post("/Account/SaveUserInfo", data, function (dataObj) {
+            $.messager.alert("提示", dataObj.Msg);
+            if (dataObj.Flag === "true") {
+                $("#dlgEdit").dialog("close");
+                searchData();
+                $("#fm").form("clear");
+            }
+        });
+    }
+
+    function searchData() {
+        var pageSize = 10;
+        var pageIndex = 1;
+        var url = "/Account/UserInfoList?page=" + pageIndex + "&rows=" + pageSize;
+        var dataStr = $("#searchForm").serialize();
+        $.post(url, dataStr, function (result) {
+            if (result === "null") {
+                $.messager.alert("提示", "加载失败");
+            } else {
+                $("#dataGrid").datagrid("loadData", result);
+            }
+        });
+    }
+
+    function resetPassword() {
+        var userInfoId = $("#UserInfoId").val();
+        if (userInfoId === "" || userInfoId === "0") {
+            return;
+        }
+        var data = {
+            "userInfoId":userInfoId
+        };
+        $.post("/Account/ResetPassword", data, function (dataObj) {
+            $.messager.alert("提示", dataObj.Msg);
+            if (dataObj.Flag === "true") {
+                $("#dlgEdit").dialog("close");
+                searchData();
+                $("#fm").form("clear");
+            }
+        });
+    }
+</script>

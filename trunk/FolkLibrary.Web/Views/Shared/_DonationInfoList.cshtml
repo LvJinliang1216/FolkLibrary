@@ -1,0 +1,30 @@
+﻿@using FolkLibrary.Util.MvcPager;
+@using FolkLibrary.DataTransferObject;
+@model IPagedList<DonationInformationView>
+<ul class="list-group">
+    @foreach (var item in Model)
+    {
+        <li class="list-group-item"><a href="#">@(item.DonationInstruction + "(" + item.DonationDatetime + ")")</a></li>
+    }
+</ul>
+<div class="text-center">
+    @Ajax.Pager(Model, new PagerOptions
+{
+    PageIndexParameterName = "pageIndex",
+    ContainerTagName = "ul",
+    CssClass = "pagination",
+    CurrentPagerItemTemplate = "<li class=\"active\"><a href=\"#\">{0}</a></li>",
+    DisabledPagerItemTemplate = "<li class=\"disabled\"><a>{0}</a></li>",
+    PagerItemTemplate = "<li>{0}</li>",
+    AlwaysShowFirstLastPageNumber = true,
+    ActionName = "DonationInformationList",
+    ControllerName = "DonationInformation",
+    AutoHide = false,
+
+}, new MvcAjaxOptions()
+{
+    HttpMethod = "Post",
+    DataFormId = "searchForm",
+    UpdateTargetId = "donationInfoList"
+})
+</div>

@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "ProjectDeatil";
+    Layout = "~/Views/Shared/_LayoutDetail.cshtml";
+}
+@using FolkLibrary.DataTransferObject;
+@model ProjectView
+<div class="row">
+    <div class="col-sm-12" style="text-align: center;">
+        <h3>@Model.Title</h3>
+        <h6 class="pull-right">@(Model.PublishedTime.HasValue ? Model.PublishedTime.Value.ToString("yyyy-MM-dd") : "")</h6>
+        <div>
+            @(Server.UrlDecode(Model.ProjectContent))
+        </div>
+    </div>
+</div>

@@ -1,0 +1,20 @@
+﻿@using System.Web.Optimization
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>_LayoutFolkLibrary</title>
+    @Styles.Render("~/Content/easyui")
+    @Scripts.Render("~/Scripts/jquery")
+    @Scripts.Render("~/Scripts/easyui")
+    @Scripts.Render("~/Scripts/common")
+</head>
+<body>
+    @RenderBody()
+</body>
+</html>

@@ -1,0 +1,8 @@
+D:\FolkLibrary\trunk\FolkLibrary.DataTransferObject\bin\Debug\FolkLibrary.DataTransferObject.dll
+D:\FolkLibrary\trunk\FolkLibrary.DataTransferObject\bin\Debug\FolkLibrary.DataTransferObject.pdb
+D:\FolkLibrary\trunk\FolkLibrary.DataTransferObject\obj\Debug\FolkLibrary.DataTransferObject.dll
+D:\FolkLibrary\trunk\FolkLibrary.DataTransferObject\obj\Debug\FolkLibrary.DataTransferObject.pdb
+F:\FolkLibrary\trunk\FolkLibrary.DataTransferObject\bin\Debug\FolkLibrary.DataTransferObject.dll
+F:\FolkLibrary\trunk\FolkLibrary.DataTransferObject\bin\Debug\FolkLibrary.DataTransferObject.pdb
+F:\FolkLibrary\trunk\FolkLibrary.DataTransferObject\obj\Debug\FolkLibrary.DataTransferObject.dll
+F:\FolkLibrary\trunk\FolkLibrary.DataTransferObject\obj\Debug\FolkLibrary.DataTransferObject.pdb

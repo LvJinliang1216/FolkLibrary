@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{72859408-DB32-44D3-99AE-090C6DAF5C66}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FolkLibrary.Configuration</RootNamespace>
+    <AssemblyName>FolkLibrary.Configuration</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <WebGreaseLibPath>..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.4.1.9004, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="AutoMapper, Version=5.2.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.5.2.0\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.RegistrationByConvention, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.5.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WebGrease, Version=1.5.2.14234, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AutoMapperProfile\AreaProfile.cs" />
+    <Compile Include="AutoMapperProfile\CityProfile.cs" />
+    <Compile Include="AutoMapperProfile\ClueProfile.cs" />
+    <Compile Include="AutoMapperProfile\DonationInformationProfile.cs" />
+    <Compile Include="AutoMapperProfile\FriendDepartmentProfile.cs" />
+    <Compile Include="AutoMapperProfile\LeaveWordProfile.cs" />
+    <Compile Include="AutoMapperProfile\LibraryInfoProfile.cs" />
+    <Compile Include="AutoMapperProfile\ModuleProfile.cs" />
+    <Compile Include="AutoMapperProfile\ProgramProfile.cs" />
+    <Compile Include="AutoMapperProfile\ProjectClassProfile.cs" />
+    <Compile Include="AutoMapperProfile\ProjectProfile.cs" />
+    <Compile Include="AutoMapperProfile\ProvinceProfile.cs" />
+    <Compile Include="AutoMapperProfile\UserAuthorityProfile.cs" />
+    <Compile Include="AutoMapperProfile\UserInfoProfile.cs" />
+    <Compile Include="AutoMapperProfile\WebSiteInfoProfile.cs" />
+    <Compile Include="ControllerConfiguration\UnityControllerFactory.cs" />
+    <Compile Include="ControllerConfiguration\UnityDependencyResolver.cs" />
+    <Compile Include="Initialization\Initialization.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UnityConfiguration\UnityConfig.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FolkLibrary.Application.Interface\FolkLibrary.Application.Interface.csproj">
+      <Project>{b10d93e9-763e-44a1-89cf-47f13b8f2548}</Project>
+      <Name>FolkLibrary.Application.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FolkLibrary.Application\FolkLibrary.Application.csproj">
+      <Project>{58e6712f-a378-4b22-b3aa-01becfc247f1}</Project>
+      <Name>FolkLibrary.Application</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FolkLibrary.DataTransferObject\FolkLibrary.DataTransferObject.csproj">
+      <Project>{e7193e93-29f0-4084-807f-867b24d4470e}</Project>
+      <Name>FolkLibrary.DataTransferObject</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FolkLibrary.Domain\FolkLibrary.Domain.csproj">
+      <Project>{44ed475d-c318-4d7c-88e1-d899dda81f31}</Project>
+      <Name>FolkLibrary.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FolkLibrary.Infrastructure.Interface\FolkLibrary.Infrastructure.Interface.csproj">
+      <Project>{811ce95d-f841-45fe-a77d-d997eb58f92f}</Project>
+      <Name>FolkLibrary.Infrastructure.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FolkLibrary.Infrastructure\FolkLibrary.Infrastructure.csproj">
+      <Project>{9bd46058-4d89-4962-9698-a57fe8c33e8d}</Project>
+      <Name>FolkLibrary.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FolkLibrary.Repository.Interface\FolkLibrary.Repository.Interface.csproj">
+      <Project>{20c7f072-cfb6-45b5-a080-568b0255f28c}</Project>
+      <Name>FolkLibrary.Repository.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FolkLibrary.Repository\FolkLibrary.Repository.csproj">
+      <Project>{810d4495-b9ae-43c8-86d3-c57a987485dc}</Project>
+      <Name>FolkLibrary.Repository</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

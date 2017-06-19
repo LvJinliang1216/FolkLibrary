@@ -1,0 +1,122 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using FolkLibrary.DataTransferObject
+@model Dictionary<string, object>
+<div style="width:100%">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-6 col-sm-3">
+                <div class="panel panel-default">
+                    <div class="panel-heading" style="background-color:#337ab7;color:#ffffff;"><span style="font-size:18px;">信息检索</span></div>
+                    <div class="panel-body clear-padding-all">
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-addon">检索项</span>
+                            <select class="form-control">
+                                <option value="1">北京</option>
+                                <option value="1">天津</option>
+                                <option value="1">河北</option>
+                                <option value="1">山西</option>
+                                <option value="1">河南</option>
+                                <option value="1">湖南</option>
+                            </select>
+                        </div>
+                        <div class="fill-top-space"></div>
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-addon">检索词</span>
+                            <input type="text" class="form-control" style="width:150px;" placeholder="检索词">
+                            <button type="button" class="btn btn-default" style="height:30px;">检索</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading" style="background-color:#337ab7;color:#ffffff;"><span style="font-size:18px;">省份排名</span></div>
+                    <div class="panel-body clear-padding-all" style="height:100px;">
+                        <ul class="list-group">
+                            @Html.Action("Index", "Province")
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-6 col-sm-6 clear-padding-all">
+                <div class="panel panel-default">
+                    <div class="panel-heading" style="background-color:#337ab7;color:#ffffff;"><span style="font-size:18px;">所有成员列表</span></div>
+                    <div class="panel-body ">
+                        <ul class="list-group">
+                            @foreach (var libraryInfoItem in (List<LibraryInfoView>)Model["LibraryInfoView"])
+                            {
+                                <li class="list-group-item">
+                                    <div class="media-list">
+                                        <a class="pull-left" href="#">
+                                            @{
+                                var libraryInfoView = libraryInfoItem.AttachmentViews.FirstOrDefault();
+                                            }
+                                            <img class="media-object" style="width: 100px; height: 90px;" src="@(libraryInfoView==null?"":libraryInfoView.FileAddress)" alt=" 通用的占位符图像" />
+                                        </a>
+
+                                        <div class="media-body">
+                                            <h6>创办人：@libraryInfoItem.BuildUserName</h6>
+                                            <h6>
+                                                创办时间：@if (libraryInfoItem.BuildDate != null)
+                                                {
+                                                    @libraryInfoItem.BuildDate.Value.ToString("yyyy-MM-dd")
+                                                }
+                                            </h6>
+                                            <h6>地址：@(libraryInfoItem.AreaView.CityView.ProvinceView.ProvinceName + libraryInfoItem.AreaView.CityView.CityName + libraryInfoItem.AreaView.AreaName + libraryInfoItem.Address)</h6>
+                                            <h6>发布时间：@libraryInfoItem.CreateDateTime.ToString("yyyy-MM-dd")</h6>
+                                        </div>
+                                        <h5>@libraryInfoItem.LibraryName</h5>
+                                    </div>
+                                </li>
+                            }
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-6 col-sm-3">
+                <div class="panel panel-default">
+                    <div class="panel-heading" style="background-color:#337ab7;color:#ffffff;"><span style="font-size:18px;">省市列表</span></div>
+                    <div class="panel-body">
+                        @{
+                            var provinceView = (List<ProvinceView>)Model["ProvinceView"];
+                        }
+                        @for (var num = 0; num < provinceView.Count; num += 3)
+                        {
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <a href="#" title="@provinceView[num].ProvinceName">@(provinceView[num].ProvinceName.Length > 3 ? provinceView[num].ProvinceName.Substring(0, 3) + "..." : provinceView[num].ProvinceName)</a>
+                                </div>
+                                @if (num + 1 < provinceView.Count)
+                                {
+                                    <div class="col-sm-4">
+                                        <a href="#" title="@provinceView[num + 1].ProvinceName">@(provinceView[num + 1].ProvinceName.Length > 3 ? provinceView[num + 1].ProvinceName.Substring(0, 3) + "..." : provinceView[num + 1].ProvinceName)</a>
+                                    </div>
+                                }
+
+                                @if (num + 2 < provinceView.Count)
+                                {
+                                    <div class="col-sm-4">
+                                        <a href="#" title="@provinceView[num + 2].ProvinceName">@(provinceView[num + 2].ProvinceName.Length > 3 ? provinceView[num + 2].ProvinceName.Substring(0, 3) + "..." : provinceView[num + 2].ProvinceName)</a>
+                                    </div>
+                                }
+
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading" style="background-color:#337ab7;color:#ffffff;"><span style="font-size:18px;">主办单位</span></div>
+                    <div class="panel-body clear-padding-all">
+                        <ul class="list-group">
+                            <li class="list-group-item"><a href="#">北京大学信息管理系</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

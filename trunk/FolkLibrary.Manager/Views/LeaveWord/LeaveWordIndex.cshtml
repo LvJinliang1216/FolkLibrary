@@ -1,0 +1,103 @@
+﻿@{
+    ViewBag.Title = "留言信息";
+    Layout = "~/Views/Shared/_LayoutFolkLibrary.cshtml";
+}
+
+<div id="searchPanel" class="easyui-panel" title="数据检索" style="height: 60px;">
+    <form id="searchForm">
+        <table>
+            <tr>
+                <td>
+                    <label>开始时间:</label>
+                    <input type="text" class="easyui-datebox" id="startTime">
+                </td>
+                <td>
+                    <label>结束时间:</label>
+                    <input type="text" class="easyui-datebox" id="endTime">
+                </td>
+                <td>
+                    <a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'" onclick="searchData()">查询留言信息</a>
+                    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-no" plain="true" onclick="DeleteMenu()">删除留言信息</a>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+@*结果集*@
+<table id="dataGrid" title="功能列表" class="easyui-datagrid" toolbar="#toolbar" pagination="true" rownumbers="true" fitcolumns="true" nowrap="false" url="/LeaveWord/LeaveWordList" style="width: 100%;">
+    <thead>
+        <tr>
+            <th data-options="field:'ck',checkbox:true" align="center"></th>
+            <th field="LeaveWordTitle">留言标题</th>
+            <th field="LeaveWordContent">留言内容</th>
+            <th field="Email">邮件地址</th>
+            <th field="Telephone">联系电话</th>
+            <th field="CreateDateTime" data-op>留言时间</th>
+        </tr>
+    </thead>
+</table>
+<div id='Loading' style="position: absolute; z-index: 1000; top: 0px; left: 0px;
+        width: 100%; height: 100%; background: #fff; text-align: center;">
+    <h1 style="top: 48%; position: relative; color:#909ba5;">
+        <font>正在处理中，请稍后<img src="/Images/4.gif" /></font>
+    </h1>
+</div>
+<script type="text/javascript">
+    var pc;
+    $.parser.onComplete = function () {
+        if (pc) clearTimeout(pc);
+        pc = setTimeout(function () {
+            $("#Loading").hide();
+        }, 1000);
+    }
+    $(function () {
+        resizePanel("searchPanel");
+    });
+    function resizePanel(panelId) {
+        var tempHeight = document.body.height;
+        var tempWidth = document.body.width;
+        $(window).resize(function () {
+            $('#' + panelId).panel("resize",
+            {
+                width: tempWidth
+            });
+        });
+    }
+</script>
+<script type="text/javascript">
+    function DeleteMenu() {
+        var row = $('#dataGrid').datagrid('getSelected');
+        if (row) {
+            var data = {
+                "leaveWordId": row.leaveWordId
+            };
+            $.post("/LeaveWord/DeleteLeaveWord", data, function (dataObj) {
+                $.messager.alert("提示", dataObj.Msg);
+                if (dataObj.Flag === "true") {
+                    searchData();
+                }
+            });
+        } else {
+            $.messager.alert("提示", "请选择将要操作的数据");
+        }
+    }
+
+    function searchData() {
+        var pageSize = 10;
+        var pageIndex = 1;
+        var url = "/LeaveWord/LeaveWordList?page=" + pageIndex + "&rows=" + pageSize;
+            var data= {
+                "StarTime":$("#startTime").val(),
+                "EndTime":$("#endTime").val()
+            }
+            $.post(url, data, function (result) {
+                var dataObj = eval("(" + result + ")");
+                if (dataObj.rows.length > 0) {
+                    $("#dataGrid").datagrid("loadData", dataObj);
+                }
+            });
+    }
+
+
+
+</script>

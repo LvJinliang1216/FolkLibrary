@@ -1,0 +1,14 @@
+D:\FolkLibrary\trunk\FolkLibrary.Application.Interface\bin\Debug\FolkLibrary.Application.Interface.dll
+D:\FolkLibrary\trunk\FolkLibrary.Application.Interface\bin\Debug\FolkLibrary.Application.Interface.pdb
+D:\FolkLibrary\trunk\FolkLibrary.Application.Interface\bin\Debug\FolkLibrary.DataTransferObject.dll
+D:\FolkLibrary\trunk\FolkLibrary.Application.Interface\bin\Debug\FolkLibrary.DataTransferObject.pdb
+D:\FolkLibrary\trunk\FolkLibrary.Application.Interface\obj\Debug\FolkLibrary.Application.Interface.csprojResolveAssemblyReference.cache
+D:\FolkLibrary\trunk\FolkLibrary.Application.Interface\obj\Debug\FolkLibrary.Application.Interface.dll
+D:\FolkLibrary\trunk\FolkLibrary.Application.Interface\obj\Debug\FolkLibrary.Application.Interface.pdb
+F:\FolkLibrary\trunk\FolkLibrary.Application.Interface\bin\Debug\FolkLibrary.Application.Interface.dll
+F:\FolkLibrary\trunk\FolkLibrary.Application.Interface\bin\Debug\FolkLibrary.Application.Interface.pdb
+F:\FolkLibrary\trunk\FolkLibrary.Application.Interface\bin\Debug\FolkLibrary.DataTransferObject.dll
+F:\FolkLibrary\trunk\FolkLibrary.Application.Interface\bin\Debug\FolkLibrary.DataTransferObject.pdb
+F:\FolkLibrary\trunk\FolkLibrary.Application.Interface\obj\Debug\FolkLibrary.Application.Interface.csprojResolveAssemblyReference.cache
+F:\FolkLibrary\trunk\FolkLibrary.Application.Interface\obj\Debug\FolkLibrary.Application.Interface.dll
+F:\FolkLibrary\trunk\FolkLibrary.Application.Interface\obj\Debug\FolkLibrary.Application.Interface.pdb

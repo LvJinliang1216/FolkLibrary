@@ -1,0 +1,11 @@
+﻿@{
+    ViewBag.Title = "ProjectDeatil";
+    Layout = "~/Views/Shared/_LayoutDetail.cshtml";
+}
+@using FolkLibrary.DataTransferObject;
+@model List<ProvinceView>
+    
+@foreach (var item in Model)
+{
+    <option> + @item.ProvinceName + </option>;
+}

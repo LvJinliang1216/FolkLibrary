@@ -1,0 +1,21 @@
+﻿@using System.Web.Optimization
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>_LayoutProjectDetail</title>
+    @Styles.Render("~/Content/bootstrap")
+    @Scripts.Render("~/Scripts/jquery")
+    @Scripts.Render("~/Scripts/bootstrap")
+</head>
+<body style="background-color: #fff5ee">
+    <div class="container">
+        @RenderBody()
+    </div>
+</body>
+</html>

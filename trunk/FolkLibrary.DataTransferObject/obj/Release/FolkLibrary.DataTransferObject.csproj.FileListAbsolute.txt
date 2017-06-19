@@ -1,0 +1,4 @@
+F:\FolkLibrary\trunk\FolkLibrary.DataTransferObject\bin\Release\FolkLibrary.DataTransferObject.dll
+F:\FolkLibrary\trunk\FolkLibrary.DataTransferObject\bin\Release\FolkLibrary.DataTransferObject.pdb
+F:\FolkLibrary\trunk\FolkLibrary.DataTransferObject\obj\Release\FolkLibrary.DataTransferObject.dll
+F:\FolkLibrary\trunk\FolkLibrary.DataTransferObject\obj\Release\FolkLibrary.DataTransferObject.pdb

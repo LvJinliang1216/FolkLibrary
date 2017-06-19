@@ -1,0 +1,14 @@
+F:\FolkLibrary\trunk\FolkLibrary.Extension\bin\Release\FolkLibrary.Extension.dll.config
+F:\FolkLibrary\trunk\FolkLibrary.Extension\bin\Release\FolkLibrary.Extension.dll
+F:\FolkLibrary\trunk\FolkLibrary.Extension\bin\Release\FolkLibrary.Extension.pdb
+F:\FolkLibrary\trunk\FolkLibrary.Extension\bin\Release\AutoMapper.dll
+F:\FolkLibrary\trunk\FolkLibrary.Extension\bin\Release\DelegateDecompiler.dll
+F:\FolkLibrary\trunk\FolkLibrary.Extension\bin\Release\DelegateDecompiler.EntityFramework.dll
+F:\FolkLibrary\trunk\FolkLibrary.Extension\bin\Release\EntityFramework.dll
+F:\FolkLibrary\trunk\FolkLibrary.Extension\bin\Release\EntityFramework.SqlServer.dll
+F:\FolkLibrary\trunk\FolkLibrary.Extension\bin\Release\Mono.Reflection.dll
+F:\FolkLibrary\trunk\FolkLibrary.Extension\bin\Release\AutoMapper.xml
+F:\FolkLibrary\trunk\FolkLibrary.Extension\bin\Release\EntityFramework.xml
+F:\FolkLibrary\trunk\FolkLibrary.Extension\bin\Release\EntityFramework.SqlServer.xml
+F:\FolkLibrary\trunk\FolkLibrary.Extension\obj\Release\FolkLibrary.Extension.dll
+F:\FolkLibrary\trunk\FolkLibrary.Extension\obj\Release\FolkLibrary.Extension.pdb

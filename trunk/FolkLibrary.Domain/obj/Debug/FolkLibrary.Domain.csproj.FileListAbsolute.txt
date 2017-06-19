@@ -1,0 +1,14 @@
+D:\FolkLibrary\trunk\FolkLibrary.Domain\bin\Debug\FolkLibrary.Domain.dll
+D:\FolkLibrary\trunk\FolkLibrary.Domain\bin\Debug\FolkLibrary.Domain.pdb
+D:\FolkLibrary\trunk\FolkLibrary.Domain\bin\Debug\FolkLibrary.DataTransferObject.dll
+D:\FolkLibrary\trunk\FolkLibrary.Domain\bin\Debug\FolkLibrary.DataTransferObject.pdb
+D:\FolkLibrary\trunk\FolkLibrary.Domain\obj\Debug\FolkLibrary.Domain.csprojResolveAssemblyReference.cache
+D:\FolkLibrary\trunk\FolkLibrary.Domain\obj\Debug\FolkLibrary.Domain.dll
+D:\FolkLibrary\trunk\FolkLibrary.Domain\obj\Debug\FolkLibrary.Domain.pdb
+F:\FolkLibrary\trunk\FolkLibrary.Domain\bin\Debug\FolkLibrary.Domain.dll
+F:\FolkLibrary\trunk\FolkLibrary.Domain\bin\Debug\FolkLibrary.Domain.pdb
+F:\FolkLibrary\trunk\FolkLibrary.Domain\bin\Debug\FolkLibrary.DataTransferObject.dll
+F:\FolkLibrary\trunk\FolkLibrary.Domain\bin\Debug\FolkLibrary.DataTransferObject.pdb
+F:\FolkLibrary\trunk\FolkLibrary.Domain\obj\Debug\FolkLibrary.Domain.csprojResolveAssemblyReference.cache
+F:\FolkLibrary\trunk\FolkLibrary.Domain\obj\Debug\FolkLibrary.Domain.dll
+F:\FolkLibrary\trunk\FolkLibrary.Domain\obj\Debug\FolkLibrary.Domain.pdb

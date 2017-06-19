@@ -1,0 +1,94 @@
+﻿@using System.Web.Optimization
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <title>文化火种寻找之旅</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="Keywords" content="文化火种寻找之旅" />
+    <meta name="baidu-site-verification" content="S3t3QHka6N" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    @Scripts.Render("~/Scripts/jquery")
+    @Scripts.Render("~/Scripts/bootstrap")
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        .nav-href {
+            color: #000000;
+            font-size: 18px;
+        }
+
+        .clear-padding {
+            padding-top: 0px;
+            padding-bottom: 0px;
+            padding-left: 0px;
+            /*padding-right: 0px;*/
+        }
+
+        .clear-padding-all {
+            padding: 0px;
+        }
+
+        .height-170 {
+            height: 170px;
+        }
+
+        .footer {
+            height: 100px;
+        }
+
+        .article-content {
+            text-indent: 2em;
+        }
+
+        .fill-top-space {
+            margin-top: 10px;
+        }
+
+        .fill-right-space {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body style="background-color:#f3f3f3;">
+    <!--nav begin-->
+    <div style=" background-color:#317ef3;">
+        <div class="container" style="width:100%;">
+            <div class="col-sm-3">
+                <div>
+                    <img src="~/Images/logo.png" style="height:90px;" />
+                </div>
+            </div>
+            <ul class="nav nav-pills col-sm-9" style="margin-top:40px;">
+                <li><a href="http://localhost:17609/Welcome/Index" class="nav-href">回到首页</a></li>
+                <li><a href="http://localhost:17609/FolkLibrary/Index" class="nav-href">民间图书馆</a></li>
+                <li><a href="http://localhost:17609/DonationInformation/Index" class="nav-href">捐赠信息</a></li>
+                <li><a href="http://localhost:17609/Project/ProjectClassList" class="nav-href">公益项目</a></li>
+                <li><a href="http://localhost:17609/IsFine/Index" class="nav-href">撷英采珍</a></li>
+                <li><a href="http://localhost:17609/Clue/Index" class="nav-href">提供线索</a></li>
+                <li><a href="http://localhost:17609/Massage/Index" class="nav-href">给我留言</a></li>
+
+            </ul>
+        </div>
+    </div>
+    <!--nav end-->
+    @RenderBody()
+    <!--footer begin-->
+<div class="footer panel-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12" style="text-align:center;">
+                山东理工大学
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

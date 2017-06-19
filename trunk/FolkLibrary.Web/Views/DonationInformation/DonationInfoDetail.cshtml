@@ -1,0 +1,59 @@
+﻿@{
+    ViewBag.Title = "DonationInfoDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using FolkLibrary.DataTransferObject;
+@model DonationInformationView
+<div class="row">
+    <div class="col-sm-2" style="text-align: right;">
+        <h4>捐赠人/单位：</h4>
+    </div>
+    <div class="col-sm-9" style="text-align: left;">
+        @Model.DonationUserName
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-2" style="text-align: right;">
+        <h4>捐赠金额/等价：</h4>
+    </div>
+    <div class="col-sm-9" style="text-align: left;">
+        @Model.DonationAmount
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-2" style="text-align: right;">
+        <h4>捐赠说明：</h4>
+    </div>
+    <div class="col-sm-9" style="text-align: left;">
+        @Model.DonationInstruction
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-2" style="text-align: right;">
+        <h4>捐赠时间：</h4>
+    </div>
+    <div class="col-sm-9" style="text-align: left;">
+        @Model.DonationDatetime
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-2" style="text-align: right;">
+        <h4>资助项目：</h4>
+    </div>
+    <div class="col-sm-9" style="text-align: left;">
+        <ul class="list-group">
+            @foreach (var item in Model.ProjectViews)
+            {
+                <li class="list-group-item">@item.Title</li>
+            }
+        </ul>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-2" style="text-align: right;">
+        <h4>资助明细：</h4>
+    </div>
+    <div class="col-sm-9" style="text-align: left;">
+        @Model.DonationDetail
+    </div>
+</div>

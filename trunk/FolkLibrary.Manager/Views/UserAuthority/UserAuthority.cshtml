@@ -1,0 +1,189 @@
+﻿@{
+    ViewBag.Title = "UserAuthority";
+    Layout = "~/Views/Shared/_LayoutFolkLibrary.cshtml";
+}
+<form style="display: none;" id="searchForm">
+    <input id="userInfoId" name="UserInfoId" type="hidden" value="0" />
+</form>
+
+@*结果集*@
+<div class="easyui-layout" id="container" style="width: 100%;height: 500px;">
+    <div data-options="region:'west'" style="width: 30%;" data-options="fit:true">
+        <table id="dataGrid_User" title="模块列表" class="easyui-datagrid" data-options="singleSelect:'true', pagination:'true', rownumbers:'true', fitColumns:'true', nowrap:'false' ,url:'/Account/UserInfoList' ">
+            <thead>
+                <tr>
+                    <th data-options="field:'ck',checkbox:true" align="center"></th>
+                    <th field="UserName">用户名</th>
+                    <th field="AccountName">用户账号</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <div data-options="region:'east'" style="width: 70%;" data-options="fit:true">
+        <table id="dataGrid_Program" title="用户权限列表" class="easyui-datagrid" data-options="toolbar:'#toolbar_Program',singleSelect:'true', pagination:'true', rownumbers:'true', fitColumns:'true', nowrap:'false', url:'/UserAuthority/Search' ">
+            <thead>
+                <tr>
+                    <th data-options="field:'ck',checkbox:true" align="center"></th>
+                    <th field="UserAuthorityId" formatter="formatModuleView">所属模块</th>
+                    <th field="ProgramView" formatter="formatProgramView">页面名称</th>
+                    <th field="UserInfoId" formatter="formatPageAddress">页面地址</th>
+                    <th field="IsAuthority" formatter="formatIsAuthority" align="center">是否授权</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+<div id="toolbar_Program">
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-ok" plain="true" onclick="saveMenuData()">开启</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-cancel" plain="true" onclick="DeleteMenu()">关闭</a>
+</div>
+<div id='Loading' style="position: absolute; z-index: 1000; top: 0px; left: 0px;
+        width: 100%; height: 100%; background: #fff; text-align: center;">
+    <h1 style="top: 48%; position: relative; color:#909ba5;">
+        <font>正在处理中，请稍后<img src="/Images/4.gif" /></font>
+    </h1>
+</div>
+<script type="text/javascript">
+    var pc;
+    $.parser.onComplete = function () {
+        if (pc) clearTimeout(pc);
+        pc = setTimeout(function () {
+            $("#Loading").hide();
+        }, 1000);
+    }
+    $(function () {
+        resizePanel("searchPanel");
+    });
+    function resizePanel(panelId) {
+        var tempHeight = document.body.height;
+        var tempWidth = document.body.width;
+        $(window).resize(function () {
+            $('#' + panelId).panel("resize",
+            {
+                width: tempWidth
+            });
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(function () {
+        initialProvince();
+        initailDataGridUser();
+    });
+
+    function saveMenuData() {
+        var rowUser = $('#dataGrid_User').datagrid('getSelected');
+        var rowProgram = $('#dataGrid_Program').datagrid('getSelected');
+        if (rowUser && rowProgram) {
+            var data = {};
+            data.UserInfoId = rowUser.Id;
+            data.ProgramId = rowProgram.ProgramId;
+            $.post("/UserAuthority/SaveUserAuthority", data, function (data) {
+                var dataObj = eval("(" + data + ")");
+                $.messager.alert("提示", dataObj.Msg);
+                if (dataObj.Flag === "true") {
+                    $("#dlgEdit").dialog("close");
+                    searchData();
+                    $("#fm").form("clear");
+                }
+            });
+        } else {
+            $.messager.alert("提示", "请选择将要操作的数据");
+        }
+    }
+
+    function DeleteMenu() {
+        var rowUser = $('#dataGrid_User').datagrid('getSelected');
+        var rowProgram = $('#dataGrid_Program').datagrid('getSelected');
+        if (rowUser && rowProgram) {
+            var data = {};
+            data.UserInfoId = rowUser.Id;
+            data.UserAuthorityId = rowProgram.UserAuthorityId;
+            $.post("/UserAuthority/DeleteUserAuthority", data, function (data) {
+                var dataObj = eval("(" + data + ")");
+                $.messager.alert("提示", dataObj.Msg);
+                if (dataObj.Flag === "true") {
+                    searchData();
+                }
+            });
+        } else {
+            $.messager.alert("提示", "请选择将要操作的数据");
+        }
+    }
+
+    function searchData() {
+        var pageSize = 10;
+        var pageIndex = 1;
+        var url = "/UserAuthority/Search?page=" + pageIndex + "&rows=" + pageSize;
+        var data = $("#searchForm").serialize();
+        $.post(url, data, function (result) {
+            var dataObj = eval("(" + result + ")");
+            $("#dataGrid_Program").datagrid("loadData", dataObj);
+        });
+    }
+
+    function initialProvince() {
+        $("#province").combobox({
+            onChange: function (newValue, oldValue) {
+                initialCity(newValue);
+            },
+            url: "/Province/GetProvince"
+        });
+    }
+
+    function initialCity(provinceId) {
+        $("#city").combobox({
+            onChange: function (newValue, oldValue) {
+                initialArea(newValue);
+            },
+            url: "/City/GetCity?ProvinceId=" + provinceId
+        });
+    }
+
+    function initialArea(cityId) {
+        $("#area").combobox({
+            url: "/Area/GetArea?CityId=" + cityId
+        });
+    }
+
+    function initailDataGridUser() {
+        $("#dataGrid_User").datagrid({
+            onSelect: function (rowIndex, rowData) {
+                $("#userInfoId").val(rowData.Id);
+                searchData();
+            }
+        });
+    }
+    function formatIsAuthority(value, row) {
+        if (value !== null && value !== undefined && value) {
+            return "<span style=\"font-size:20px;\">√</span>";
+        } else {
+            return "<span style=\"font-size:20px;\">×</span>";
+        }
+    }
+
+    function formatProgramView(value, row) {
+        if (value !== null && value !== undefined) {
+            return value.ProgramName;
+        } else {
+            return "";
+        }
+    }
+
+    function formatModuleView(value, row) {
+        if (value !== null && value !== undefined) {
+            return row.ProgramView.ModuleView.ModuleName;
+        } else {
+            return "";
+        }
+    }
+
+    function formatPageAddress(value, row) {
+        if (value !== null && value !== undefined) {
+            return row.ProgramView.PageUrl;
+        } else {
+            return "";
+        }
+    }
+</script>

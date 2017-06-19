@@ -1,0 +1,85 @@
+﻿@using System.Linq
+@using FolkLibrary.DataTransferObject;
+@{
+    ViewBag.Title = "项目分类列表";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model Dictionary<string, object>
+<div style="width:100%">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-6 col-sm-3" style="height:1000px">
+                <div class="panel panel-default">
+                    <div class="panel-heading" style="background-color:#337ab7;color:#ffffff;"><span style="font-size:18px;">信息检索</span></div>
+                    <div class="panel-body clear-padding-all">
+                        @using (Ajax.BeginForm("ProjectList",
+                            new RouteValueDictionary { },
+                            new AjaxOptions
+                            {
+                                UpdateTargetId = "articles",
+                                InsertionMode = InsertionMode.Replace,
+                                HttpMethod = "Post"
+                            },
+                            new RouteValueDictionary
+                            {
+                                { "id", "searchForm" },
+                                { "class", "form-inline well well-sm" }
+                            }))
+                        {
+                            <div class="input-group input-group-sm">
+                                <span class="input-group-addon">省份</span>
+                                <input type="text" class="form-control" name="provinceName" style="width: 150px;" placeholder="按照省份检索">
+                            </div>
+                            <div class="fill-top-space"></div>
+                            <div class="input-group input-group-sm">
+                                <span class="input-group-addon">标题</span>
+                                <input type="text" class="form-control" name="title" style="width: 150px;" placeholder="按照标题检索">
+                            </div>
+                            <div class="text-justify">
+                                <button type="submit" class="btn btn-default" style="height: 30px;">检索</button>
+                            </div>
+                        }
+                    </div>
+
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading" style="background-color:#337ab7;color:#ffffff;"><span style="font-size:18px;">省份排名</span></div>
+                    <div class="panel-body clear-padding-all">
+                        <ul class="list-group">
+
+                            @if (Model.ContainsKey("ProvinceList"))
+                            {
+                                var provinceWithProjectClassViews = Model["ProvinceList"] as List<ProvinceWithProjectClassView>;
+                                if (provinceWithProjectClassViews != null)
+                                {
+                                    var total = 0;
+                                    foreach (var x in provinceWithProjectClassViews)
+                                    {
+                                        total += x.ProjectViews.Count<ProjectClassView>();
+                                    }
+                                    foreach (var item in provinceWithProjectClassViews)
+                                    {
+                                        <li class="list-group-item">
+                                            <a href="/Project/ProjectList?ProvinceCode=@item.ProvinceCode">@item.ProvinceName</a>
+                                            <div class="progress">
+                                                <div class="progress-bar progress-bar-warning" role="progressbar" style="width:@(item.ProjectViews.Count()*100 / total)%">
+
+                                                </div>
+                                            </div>
+                                        </li>
+                                    }
+                                }
+                            }
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6 col-sm-9 clear-padding-all" id="projectClassList">
+                @Html.Partial("_ProjectListView", Model)
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="@Url.Content("~/Scripts/MvcPager.js")"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>

@@ -1,0 +1,40 @@
+﻿@using FolkLibrary.DataTransferObject
+@using FolkLibrary.Util.MvcPager
+@model Dictionary<string, object>
+
+<div class="panel panel-default">
+    <div class="panel-heading" style="background-color:#337ab7;color:#ffffff;"><span style="font-size:18px;">所有项目</span><div class="pull-right"><span class="badge"><a href="#" style="color:#ffffff;">更多...</a></span></div></div>
+    <div class="panel-body">
+
+        <ul class="list-group">
+            @foreach (var item in ((PagedList<ProjectView>)Model["ProjectList"]))
+            {
+                <li class="list-group-item"><a href="/Project/ProjectDeatil?ProjectId=@item.Id">@item.Title</a></li>
+            }
+        </ul>
+        <div class="text-center">
+            @Ajax.Pager((PagedList<ProjectView>)Model["ProjectList"], new PagerOptions
+                            {
+                                PageIndexParameterName = "pageIndex",
+                                ContainerTagName = "ul",
+                                CssClass = "pagination",
+                                CurrentPagerItemTemplate = "<li class=\"active\"><a href=\"#\">{0}</a></li>",
+                                DisabledPagerItemTemplate = "<li class=\"disabled\"><a>{0}</a></li>",
+                                PagerItemTemplate = "<li>{0}</li>",
+                                AlwaysShowFirstLastPageNumber = true,
+                                ActionName = "ProjectClassList",
+                                ControllerName = "Project",
+                                AutoHide = false,
+
+                            }, new MvcAjaxOptions()
+                            {
+                                HttpMethod = "Post",
+                                DataFormId = "searchForm",
+                                UpdateTargetId = "projectClassList"
+                            })
+        </div>
+
+    </div>
+</div>
+
+

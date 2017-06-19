@@ -1,0 +1,75 @@
+﻿@using System.Web.Optimization
+@using FolkLibrary.DataTransferObject;
+@model ClueView
+@Styles.Render("~/Content/bootstrap-datetimepicker")
+@Scripts.Render("~/Scripts/datetimepicker")
+
+
+<div class="col-xs-6 col-sm-9">
+    <div class="panel panel-default" id="replace">
+        <div class="panel-heading" style="background-color:#337ab7;color:#ffffff;"><span style="font-size:18px;">提供线索</span></div>
+        <div class="panel-body">
+            @using (Html.BeginForm("SaveLibraryInfo", "Clue", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(x => x.AreaId)
+                <div class="form-group">
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-addon">图书馆名:</span>
+                        @Html.TextBoxFor(x => x.LibraryName)
+                    </div>
+                    <div class="fill-top-space"></div>
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-addon">图书馆长:</span>
+                        @Html.TextBoxFor(x => x.LibrarianName)
+                    </div>
+                    <div class="fill-top-space"></div>
+                    <div class="input-group input-group-sm" style="width: 50%;">
+                        <span class="input-group-addon">建馆时间:</span>
+                        <!--指定 date标记-->
+                        <div class='input-group date' id='datetimepicker1'>
+                           @Html.TextBoxFor(x=>x.BuilDateTime,new {@class="form-control"})
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>  
+                    </div>
+                    <div class="fill-top-space"></div>
+                    <div class="input-group input-group-sm" style="width: 50%;">
+                        <span class="input-group-addon">图书馆址:</span>
+                        @Html.TextBoxFor(x => x.Address)
+                    </div>
+                    <div class="fill-top-space"></div>
+                    <div class="input-group input-group-sm" style="width: 50%;">
+                        <span class="input-group-addon">书馆简介:</span>
+                        @Html.TextAreaFor(x => x.Brief)
+                    </div>
+                    <div class="fill-top-space"></div>
+                    <div class="input-group input-group-sm" style="width: 100%;">
+                        <div class="row">
+                            <div class="col-xs-6 col-sm-6"></div>
+                            <div class="col-xs-6 col-sm-6">
+                                <div class="btn-group btn-group-justified">
+                                    <div class="btn-group">
+                                        <button type="submit" class="btn btn-info" >提交</button>
+                                    </div>
+                                    <div class="btn-group">
+                                        <button type="reset" class="btn btn-danger">重置</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $('#datetimepicker1').datetimepicker({
+            format: 'YYYY-MM-DD',
+            locale: 'zh-cn'
+        });
+    });
+</script>

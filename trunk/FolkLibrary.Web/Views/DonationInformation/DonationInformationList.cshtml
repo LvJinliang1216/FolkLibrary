@@ -1,0 +1,67 @@
+﻿@{
+    ViewBag.Title = "捐赠信息";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using FolkLibrary.Util.MvcPager;
+@using FolkLibrary.DataTransferObject;
+@model Dictionary<string, object>
+<div style="width:100%">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-6 col-sm-3">
+                <div class="panel panel-default">
+                    <div class="panel-heading" style="background-color:#337ab7;color:#ffffff;"><span style="font-size:18px;">信息检索</span></div>
+                    <div class="panel-body clear-padding-all">
+                        @using (Ajax.BeginForm("Dona",
+                            new RouteValueDictionary { },
+                            new AjaxOptions
+                            {
+                                UpdateTargetId = "articles",
+                                InsertionMode = InsertionMode.Replace,
+                                HttpMethod = "Post"
+                            },
+                            new RouteValueDictionary
+                            {
+                                { "id", "searchForm" },
+                                { "class", "form-inline well well-sm" }
+                            }))
+                        {
+                            <div class="input-group input-group-sm">
+                                <span class="input-group-addon">捐赠人</span>
+                                <input type="text" class="form-control" name="donationUserName" style="width: 185px;" placeholder="按照捐赠人检索">
+                            </div>
+                            <div class="input-group input-group-sm">
+                                <span class="input-group-addon">关键字</span>
+                                <input type="text" class="form-control" name="donationInstruction" style="width: 185px;" placeholder="按照关键字检索">
+                            </div>
+                            <div class="text-right">
+                                <button type="submit" class="btn btn-default" style="height: 30px;">检索</button>
+                            </div>
+                        }
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading" style="background-color:#337ab7;color:#ffffff;"><span style="font-size:18px;">慈善捐赠</span><div class="pull-right"><span class="badge"><a href="#" style="color:#ffffff;">更多...</a></span></div></div>
+                    <div class="panel-body clear-padding-all">
+                        <ul class="list-group">
+                            @foreach (var item in Model["HotData"] as List<DonationInformationView>)
+                            {
+                                <li class="list-group-item"><a href="/DonationInformation/DonationInfoDetail?donationInfoId=@item.Id">@(item.DonationInstruction + "(" + item.DonationDatetime + ")")</a></li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-6 col-sm-9 clear-padding-all">
+                <div class="panel panel-default">
+                    <div class="panel-heading" style="background-color:#337ab7;color:#ffffff;"><span style="font-size:18px;">所有成员列表</span><div class="pull-right"><span class="badge"><a href="#" style="color:#ffffff;">更多...</a></span></div></div>
+                    <div class="panel-body" id="donationInfoList">
+                        @Html.Partial("_DonationInfoList", Model["DonationInfoList"] as IPagedList<DonationInformationView>)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,9 @@
+F:\FolkLibrary\trunk\FolkLibrary.Repository.Interface\bin\Release\FolkLibrary.Repository.Interface.dll
+F:\FolkLibrary\trunk\FolkLibrary.Repository.Interface\bin\Release\FolkLibrary.Repository.Interface.pdb
+F:\FolkLibrary\trunk\FolkLibrary.Repository.Interface\bin\Release\FolkLibrary.Domain.dll
+F:\FolkLibrary\trunk\FolkLibrary.Repository.Interface\bin\Release\FolkLibrary.DataTransferObject.dll
+F:\FolkLibrary\trunk\FolkLibrary.Repository.Interface\bin\Release\FolkLibrary.Domain.pdb
+F:\FolkLibrary\trunk\FolkLibrary.Repository.Interface\bin\Release\FolkLibrary.DataTransferObject.pdb
+F:\FolkLibrary\trunk\FolkLibrary.Repository.Interface\obj\Release\FolkLibrary.Repository.Interface.csprojResolveAssemblyReference.cache
+F:\FolkLibrary\trunk\FolkLibrary.Repository.Interface\obj\Release\FolkLibrary.Repository.Interface.dll
+F:\FolkLibrary\trunk\FolkLibrary.Repository.Interface\obj\Release\FolkLibrary.Repository.Interface.pdb

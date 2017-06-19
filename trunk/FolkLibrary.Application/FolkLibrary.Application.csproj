@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{58E6712F-A378-4B22-B3AA-01BECFC247F1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FolkLibrary.Application</RootNamespace>
+    <AssemblyName>FolkLibrary.Application</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=5.2.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.5.2.0\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AreaService.cs" />
+    <Compile Include="AttachmentService.cs" />
+    <Compile Include="CityService.cs" />
+    <Compile Include="ClueLibraryInfoServer.cs" />
+    <Compile Include="DonationInformationServer.cs" />
+    <Compile Include="FriendDepartmentService.cs" />
+    <Compile Include="FriendNewsInfoService.cs" />
+    <Compile Include="LeaveWordService.cs" />
+    <Compile Include="LibraryInfoService.cs" />
+    <Compile Include="ModuleService.cs" />
+    <Compile Include="ProgramService.cs" />
+    <Compile Include="ProjectClassService.cs" />
+    <Compile Include="ProjectDonationRefService.cs" />
+    <Compile Include="ProjectService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ProvinceService.cs" />
+    <Compile Include="UserAuthorityService.cs" />
+    <Compile Include="UserInfoService.cs" />
+    <Compile Include="WebSitInfoService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FolkLibrary.Application.Interface\FolkLibrary.Application.Interface.csproj">
+      <Project>{b10d93e9-763e-44a1-89cf-47f13b8f2548}</Project>
+      <Name>FolkLibrary.Application.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FolkLibrary.DataTransferObject\FolkLibrary.DataTransferObject.csproj">
+      <Project>{e7193e93-29f0-4084-807f-867b24d4470e}</Project>
+      <Name>FolkLibrary.DataTransferObject</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FolkLibrary.Domain\FolkLibrary.Domain.csproj">
+      <Project>{44ed475d-c318-4d7c-88e1-d899dda81f31}</Project>
+      <Name>FolkLibrary.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FolkLibrary.Extension\FolkLibrary.Extension.csproj">
+      <Project>{246f2a48-f5df-4eed-a9e7-c1a7cfb13519}</Project>
+      <Name>FolkLibrary.Extension</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FolkLibrary.Infrastructure.Interface\FolkLibrary.Infrastructure.Interface.csproj">
+      <Project>{811ce95d-f841-45fe-a77d-d997eb58f92f}</Project>
+      <Name>FolkLibrary.Infrastructure.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FolkLibrary.Repository.Interface\FolkLibrary.Repository.Interface.csproj">
+      <Project>{20c7f072-cfb6-45b5-a080-568b0255f28c}</Project>
+      <Name>FolkLibrary.Repository.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FolkLibrary.Util\FolkLibrary.Util.csproj">
+      <Project>{b7d15b49-77a6-4ea7-8dd2-3b830a8da3d5}</Project>
+      <Name>FolkLibrary.Util</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

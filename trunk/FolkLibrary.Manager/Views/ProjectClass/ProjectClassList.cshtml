@@ -1,0 +1,196 @@
+﻿@{
+    ViewBag.Title = "ProjectClassList";
+    Layout = "~/Views/Shared/_LayoutFolkLibrary.cshtml";
+}
+
+<div id="searchPanel" class="easyui-panel" title="数据检索" style="height: 60px;">
+    <form id="searchForm">
+        <table>
+            <tr>
+                <td>
+                    <label>分类名称:</label>
+                    <input type="text" class="easyui-textbox" Name="Title">
+                </td>
+                <td>
+                    <a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon-search'" onclick="searchData()">查询</a>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+@*结果集*@
+<table id="dataGrid" title="功能列表" class="easyui-datagrid" toolbar="#toolbar" pagination="true" rownumbers="true" fitcolumns="true" nowrap="false" url="/ProjectClass/Search" style="width: 100%;">
+    <thead>
+        <tr>
+            <th data-options="field:'ck',checkbox:true" align="center"></th>
+            <th field="Title">分类名称</th>
+            <th field="ProvinceView" formatter="formatProvinceView">分类名称</th>
+            <th field="Description" style="width: 50%;">项目描述</th>
+            <th field="CreateDateTime">创建时间</th>
+            <th field="ModifyDateTime">修改时间</th>
+            <th field="UserInfoView" formatter="formatUserInfoView">操作人</th>
+        </tr>
+    </thead>
+</table>
+
+@*增加更新对话框*@
+<div id="dlgEdit" class="easyui-dialog" title="编辑用户信息" closed="true" style="width:400px;height:250px;padding:10px 10px" buttons="#dlgope-buttons">
+    <form id="fm" method="post" novalidate style="width: 90%; text-align: left;">
+        <table>
+            <tr>
+                <td>
+                    <label>分类名称:</label>
+                    <input type="hidden" name="ProjectClassId" id="ProjectClassId" value="0" />
+                    <input name="Title" class="easyui-textbox" style="width: 250px" data-options="required:true">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>所在省份:</label>
+                    <input name="ProvinceId" class="easyui-combobox" url="/Province/GetProvince" valuefield="Id" textfield="ProvinceName" style="width: 250px" data-options="required:true">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>排&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;序:</label>
+                    <input name="SortCode" class="easyui-numberbox" style="width: 250px;" data-options="required:true,min:1">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>分类描述:</label>
+                    <input name="Description" class="easyui-textbox" multiline="true" style="width: 250px; height: 50px;" data-options="required:true">
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<div id="dlgope-buttons">
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-ok" onclick="saveMenuData()" style="width:70px;">保存</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-cancel" onclick="javascript: $('#fm').form('clear'), $('#dlgEdit').dialog('close');" style="width:70px;">放弃</a>
+</div>
+<div id="toolbar">
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-add" plain="true" onclick="AddMenu()">添加</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-edit" plain="true" onclick="EditMenu()">修改</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-no" plain="true" onclick="DeleteMenu()">删除</a>
+</div>
+<div id='Loading' style="position: absolute; z-index: 1000; top: 0px; left: 0px;
+        width: 100%; height: 100%; background: #fff; text-align: center;">
+    <h1 style="top: 48%; position: relative; color:#909ba5;">
+        <font>正在处理中，请稍后<img src="/Images/4.gif" /></font>
+    </h1>
+</div>
+<script type="text/javascript">
+    var pc;
+    $.parser.onComplete = function () {
+        if (pc) clearTimeout(pc);
+        pc = setTimeout(function () {
+            $("#Loading").hide();
+        }, 1000);
+    }
+    $(function () {
+        resizePanel("searchPanel");
+    });
+    function resizePanel(panelId) {
+        var tempHeight = document.body.height;
+        var tempWidth = document.body.width;
+        $(window).resize(function () {
+            $('#' + panelId).panel("resize",
+            {
+                width: tempWidth
+            });
+        });
+    }
+</script>
+<script type="text/javascript">
+    $(function () {
+        resizePanel("searchPanel");
+    });
+    function resizePanel(panelId) {
+        var tempHeight = document.body.height;
+        var tempWidth = document.body.width;
+        $(window).resize(function () {
+            $('#' + panelId).panel("resize",
+            {
+                width: tempWidth
+            });
+        });
+    }
+    function AddMenu() {
+        $("#fm").form("clear");
+        $("#dlgEdit").dialog("open");
+    }
+
+    function saveMenuData() {
+        var validateResult = $("#fm").form("validate");
+        if (!validateResult) {
+            return;
+        }
+        var data = $("#fm").serialize();
+        $.post("/ProjectClass/CreateOrModifyProjectClass", data, function (data) {
+            var dataObj = eval("(" + data + ")");
+            $.messager.alert("提示", dataObj.Msg);
+            if (dataObj.Flag === "true") {
+                $("#dlgEdit").dialog("close");
+                searchData();
+                $("#fm").form("clear");
+            }
+        });
+    }
+
+    function EditMenu() {
+        var row = $('#dataGrid').datagrid('getSelected');
+        if (row) {
+            $("#fm").form("load", row);
+            $("#dlgEdit").dialog("open");
+        } else {
+            $.messager.alert("提示", "请选择将要操作的数据");
+        }
+    }
+
+    function DeleteMenu() {
+        var row = $('#dataGrid').datagrid('getSelected');
+        if (row) {
+            var data = {
+                "ProjectClassId": row.ProjectClassId
+            };
+            $.post("/ProjectClass/DeleteProjectClass", data, function (data) {
+                var dataObj = eval("(" + data + ")");
+                $.messager.alert("提示", dataObj.Msg);
+                if (dataObj.Flag === "true") {
+                    searchData();
+                }
+            });
+        } else {
+            $.messager.alert("提示", "请选择将要操作的数据");
+        }
+    }
+
+    function searchData() {
+        var pageSize = 10;
+        var pageIndex = 1;
+        var url = "/ProjectClass/Search?page=" + pageIndex + "&rows=" + pageSize;
+        var data = $("#searchForm").serialize();
+        $.post(url, data, function (result) {
+            var dataObj = eval("(" + result + ")");
+            $("#dataGrid").datagrid("loadData", dataObj);
+        });
+    }
+
+    function formatUserInfoView(value, row) {
+        if (value !== null && value !== undefined) {
+            return value.UserName;
+        } else {
+            return "";
+        }
+    }
+
+    function formatProvinceView(value, row) {
+        if (value !== null && value !== undefined) {
+            return value.ProvinceName;
+        } else {
+            return "";
+        }
+    }
+
+</script>
